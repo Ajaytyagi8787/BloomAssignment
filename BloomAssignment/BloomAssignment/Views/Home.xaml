@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:customcontrol="clr-namespace:BloomAssignment.FormsControl"
+             x:Class="BloomAssignment.Views.Home">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout BackgroundColor="White">
+                <StackLayout Style="{StaticResource HomeBarStacklayout}">
+                    <Image Source="Notification.png" Style="{StaticResource HomeBarImage}" HorizontalOptions="StartAndExpand"/>
+                    <Label Text="Kitchecnomics" Style="{StaticResource OliveColorLabel}" FontAttributes="Bold"/>
+                    <StackLayout HorizontalOptions="EndAndExpand" Orientation="Horizontal" Spacing="10">
+                        <Image Source="Search.png" Style="{StaticResource HomeBarImage}"/>
+                        <Image Source="User.png" Style="{StaticResource HomeBarImage}"/>
+                    </StackLayout>
+                </StackLayout>
+                <Grid BackgroundColor="#E2E2E2" HeightRequest="180" HorizontalOptions="Fill">
+                    <Image Source="MaskGroup175.jpg" Aspect="Fill" />
+                    <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="Start" Padding="20,5,10,5">
+                        <Label XAlign="Center" TextColor="Black" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" FontSize="Medium"  
+        Text="Recipe of the Day" FontFamily="PoppinsSemiBold"/>
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="End" VerticalOptions="End" Padding="20,5,10,5">
+                        <Label XAlign="Start" TextColor="White" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" FontSize="Medium"  
+        Text="Mixed Veges Baked" FontFamily="PoppinsRegular"/>
+                        <customcontrol:RatingStars Rating="3" HeightRequest="15" HorizontalOptions="End"/>
+                    </StackLayout>
+                </Grid>
+                <StackLayout Padding="10,0,10,0">
+                    <Frame BackgroundColor="OliveDrab" Padding="2" CornerRadius="5" HasShadow="False">
+                        <Frame BorderColor="White" BackgroundColor="OliveDrab" CornerRadius="5" Padding="2" HasShadow="False">
+                            <StackLayout Orientation="Horizontal" Padding="5">
+                                <Image Source="Chef2x.png"/>
+                                <StackLayout VerticalOptions="CenterAndExpand">
+                                    <Label Text="Find the recipes&#10;based on what" TextColor="White" FontSize="Medium" Style="{StaticResource StartLabel}"/>
+                                    <Label Text="YOU HAVE AT HOME" TextColor="White" FontSize="Large" Style="{StaticResource StartLabel}"/>
+                                </StackLayout>
+                                <Image Source="SeeMoreButton.png" HeightRequest="50" WidthRequest="50" HorizontalOptions="EndAndExpand"/>
+                            </StackLayout>
+                        </Frame>
+                    </Frame>
+
+                    <BoxView HeightRequest=".5" BackgroundColor="WhiteSmoke"/>
+                    <!--Popular RecipesView-->
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                       Text="Popular Recipes" VerticalOptions="CenterAndExpand"
+                     Style="{StaticResource StartLabel}"/>
+                        <Button  Style="{StaticResource BtnCollectionHeader}" Text="All Recipes"/>
+                    </StackLayout>
+                    <CollectionView ItemsSource="{Binding PopularRecipesCollectionView}" HeightRequest="140">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame Padding="5" HasShadow="True" WidthRequest="100">
+                                    <StackLayout>
+                                        <Image Source="{Binding Icon}"/>
+                                        <Label Text="{Binding Caption}" Style="{StaticResource CenterLabel}" LineBreakMode="WordWrap" />
+                                    </StackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <BoxView HeightRequest=".5" BackgroundColor="WhiteSmoke"/>
+                    <!--SuggestedMealPlanColectionView-->
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                       Text="Suggested Meal Plan"
+                     Style="{StaticResource StartLabel}" />
+                        <Button  Style="{StaticResource BtnCollectionHeader}" Text="Meal Planner"/>
+                    </StackLayout>
+                    <CollectionView ItemsSource="{Binding SuggestedMealPlanColectionView}" HeightRequest="180">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal"  ItemSpacing="15" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout HeightRequest="180">
+                                    <Label Text="{Binding DayCaption}" Style="{StaticResource CenterLabel}"/>
+                                    <Image Source="{Binding MealIcon}"  HeightRequest="120" WidthRequest="120"/>
+                                    <Label Text="{Binding MealCaption}" Style="{StaticResource CenterLabel}"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <BoxView HeightRequest=".5" BackgroundColor="WhiteSmoke"/>
+                    <!--Suggester Contents View-->
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                       Text="Suggested Contents"
+                     Style="{StaticResource StartLabel}" />
+                        <Button  Style="{StaticResource BtnCollectionHeader}" Text="View All"/>
+                    </StackLayout>
+                    <CollectionView FlowDirection="RightToLeft" ItemsSource="{Binding SuggestedContentsCollectionView}" HeightRequest="150">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal" ItemSpacing="15" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame Padding="0" HasShadow="True">
+                                    <StackLayout>
+                                        <Grid>
+                                            <Image Source="{Binding RecipeIcon}"/>
+                                            <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                                                <Image Source="{Binding PlayIcon}"/>
+                                            </StackLayout>
+                                        </Grid>
+                                        <Label Text="{Binding RecipeCaption}" Style="{StaticResource CenterLabel}"/>
+                                        <Label Text="{Binding RecipeCategory}" Style="{StaticResource CenterLabel}" TextColor="Gray"/>
+                                    </StackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+                <!--FooterLayout-->
+                <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                    <StackLayout Style="{StaticResource HomeFooterBarStack}">
+                        <Image Source="Plan.png" Style="{StaticResource HomeFooterBar}"/>
+                        <Label Text="Plan" Style="{StaticResource HomeFooterBarLabel}"/>
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource HomeFooterBarStack}">
+                        <Image Source="CookNow.png" Style="{StaticResource HomeFooterBar}"/>
+                        <Label Text="Cook Now" Style="{StaticResource HomeFooterBarLabel}"/>
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource HomeFooterBarStack}">
+                        <Image Source="Home.png" Style="{StaticResource HomeFooterBar}"/>
+                        <Label Text="Home" Style="{StaticResource HomeFooterBarLabel}" TextColor="OliveDrab"/>
+                    </StackLayout>
+
+                    <StackLayout Style="{StaticResource HomeFooterBarStack}">
+                        <Image Source="Learn.png" Style="{StaticResource HomeFooterBar}"/>
+                        <Label Text="Learn" Style="{StaticResource HomeFooterBarLabel}"/>
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource HomeFooterBarStack}">
+                        <Image Source="Store.png" Style="{StaticResource HomeFooterBar}"/>
+                        <Label Text="Shop" Style="{StaticResource HomeFooterBarLabel}"/>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
